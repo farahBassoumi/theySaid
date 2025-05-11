@@ -1,48 +1,61 @@
-import NxWelcome from './nx-welcome';
+import Home from '../pages/Home';
+import { useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import './App.css';
+import { PUBLIC_ROUTES, ROUTES } from '@/core/routes/routes';
+import { publicRoutes } from '@/core/routes/publicRoutes';
+import { privateRoutes } from '@/core/routes/privateRoutes';
+import Layout from '@/components/layouts/layout';
+// import Providers from './components/providers/Providers.component';
+// import { privateRoutes } from './core/routes/privateRoutes';
+// import { publicRoutes } from './core/routes/publicRoutes';
+// import RouteGuard from './core/routes/routeGuard';
+// import { PUBLIC_ROUTES } from './core/routes/routes';
+// import { initializeApp } from './core/services/cookie.service';
+// import Layout from './modules/shared/layouts/layout';
 
-import { Route, Routes, Link } from 'react-router-dom';
+function App() {
+  const isAuthenticated = false;
+  const navigate = useNavigate();
 
-export function App() {
+  useEffect(() => {
+    const validRoutes = [
+      ...privateRoutes.map((r) => r.path),
+      ...publicRoutes.map((r) => r.path),
+      // ...privateRoutes.map((r) => r.path),
+    ];
+
+    if (
+      window.location.pathname === '/' ||
+      !validRoutes.includes(window.location.pathname)
+    ) {
+      navigate(PUBLIC_ROUTES.Home, { replace: true });
+    }
+  }, []);
+
   return (
-    <div>
-      <NxWelcome title="theySaid" />
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
-      <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
+    <div className="">
+      {/* <Providers> */}
+      {/* <Home /> */}
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
+        <Route element={<Layout />}>
+          {/* Public Routes */}
+          {publicRoutes.map(({ path, component: Component }) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
+
+          {/* Protected Routes */}
+          <Route >
+            {privateRoutes.map(({ path, component: Component }) => (
+              <Route key={path} path={path} element={<Component />} />
+            ))}
+          </Route>
+        </Route>
+
+        {/* Catch-all */}
+        <Route path="*" element={null} />
       </Routes>
-      {/* END: routes */}
+      {/* </Providers> */}
     </div>
   );
 }

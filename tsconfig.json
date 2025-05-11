@@ -13,7 +13,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@icons": ["./src/icons"],
+      "@components": ["./src/components"],
+      "@pages": ["./src/pages"],
+      "@types": ["./src/types"],
+      "@hooks": ["./src/hooks"],
+      "@utils": ["./src/utils"],
+      "@/*": ["./src/*"]
+    },
     "jsx": "react-jsx",
     "allowJs": false,
     "esModuleInterop": false,

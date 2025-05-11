@@ -3,10 +3,28 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+//TODO: understand what this does
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig(() => ({
-  root: __dirname,
+  //root: __dirname,
+
   cacheDir: './node_modules/.vite/theySaid',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@icons': path.resolve(__dirname, 'src/icons/index'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@types': path.resolve(__dirname, 'src/types'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+    },
+  },
   server: {
     port: 4200,
     host: 'localhost',
@@ -16,10 +34,6 @@ export default defineConfig(() => ({
     host: 'localhost',
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
   build: {
     outDir: './dist/theySaid',
     emptyOutDir: true,
