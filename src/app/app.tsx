@@ -1,7 +1,7 @@
 import Home from '../pages/Home';
 import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
+//import './App.css';
 import { PUBLIC_ROUTES, ROUTES } from '@/core/routes/routes';
 import { publicRoutes } from '@/core/routes/publicRoutes';
 import { privateRoutes } from '@/core/routes/privateRoutes';

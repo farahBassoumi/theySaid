@@ -1,4 +1,4 @@
-import Todo from "@components/TodoComponent";
+import Todo from "@/components/ui-elements/TodoComponent";
 
 
 export function Home() {
