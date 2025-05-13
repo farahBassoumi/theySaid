@@ -1,10 +1,10 @@
-import Todo from "@/components/ui-elements/TodoComponent";
+import TodoComponent from "@/components/ui-elements/TodoComponent";
 
 
 export function Home() {
   return (
     <div>
-    <Todo/>
+      <TodoComponent />
     </div>
   );
 }

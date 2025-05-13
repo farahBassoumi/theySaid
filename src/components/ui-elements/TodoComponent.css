@@ -1,0 +1,34 @@
+.check-container {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2;
+  transition: stroke 0.3s ease;
+}
+
+.circle {
+  stroke: #ccc;
+  transition: stroke 0.3s ease;
+}
+
+.tick {
+  stroke: green;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.isChecked .circle {
+  stroke: green;
+}
+
+.isChecked .tick {
+  stroke-dashoffset: 0;
+}

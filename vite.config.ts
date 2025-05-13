@@ -23,6 +23,8 @@ export default defineConfig(() => ({
       '@types': path.resolve(__dirname, 'src/types'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@utils': path.resolve(__dirname, 'src/utils'),
+      '@models': path.resolve(__dirname, 'src/models'),
+      
     },
   },
   server: {

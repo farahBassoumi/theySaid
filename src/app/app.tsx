@@ -15,14 +15,13 @@ import Layout from '@/components/layouts/layout';
 // import Layout from './modules/shared/layouts/layout';
 
 function App() {
-  const isAuthenticated = false;
+  //const isAuthenticated = false;
   const navigate = useNavigate();
 
   useEffect(() => {
     const validRoutes = [
       ...privateRoutes.map((r) => r.path),
       ...publicRoutes.map((r) => r.path),
-      // ...privateRoutes.map((r) => r.path),
     ];
 
     if (
