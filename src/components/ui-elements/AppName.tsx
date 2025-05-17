@@ -7,7 +7,7 @@ export default function AppName() {
 
   return (
     <motion.div
-        className="text-[40px] md:text-[45px]  lg:text-[50px] font-extrabold font-bold tracking-wide text-main cursor-default drop-shadow-md"
+        className="text-[40px] md:text-[45px] lg:text-[50px] font-extrabold font-bold tracking-wide text-main cursor-default drop-shadow-md"
         style={{ textShadow: '2px 2px 4px rgba(0, 41, 77, 0.6)' }}
         initial={{ opacity: 0.5, scale: 0 }}
         animate={{ opacity: 1, scale: 1.5 }}

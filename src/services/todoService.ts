@@ -3,8 +3,13 @@ import { CreateTodoParams, Status, Tag, Todo } from '@models';
 const STORAGE_KEY = 'todos';
 
 const getStoredTodos = (): Todo[] => {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? JSON.parse(stored) : [];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error('Failed to parse stored todos:', error);
+    return [];
+  }
 };
 
 const saveTodos = (todos: Todo[]): void => {
@@ -12,8 +17,7 @@ const saveTodos = (todos: Todo[]): void => {
 };
 
 export const fetchTodos = async (): Promise<Todo[]> => {
-  const todos = getStoredTodos();
-  return todos.sort(
+  return getStoredTodos().sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 };
@@ -22,13 +26,13 @@ export const createTodo = async (params: CreateTodoParams): Promise<Todo> => {
   const todos = getStoredTodos();
 
   const newTodo: Todo = {
-    id: todos.length.toString(),
+    id: crypto.randomUUID?.() ?? Date.now().toString(), // more robust ID
     createdAt: new Date(),
     ...params,
   };
 
-  todos.unshift(newTodo);
-  saveTodos(todos);
+  const updatedTodos = [newTodo, ...todos];
+  saveTodos(updatedTodos);
 
   return newTodo;
 };
@@ -41,14 +45,11 @@ export const updateTodo = async (updatedTodo: Todo): Promise<boolean> => {
 
   todos[index] = { ...todos[index], ...updatedTodo };
   saveTodos(todos);
-
   return true;
 };
 
 export const deleteTodo = async (id: string): Promise<boolean> => {
-  const todos = getStoredTodos();
-  const updatedTodos = todos.filter((todo) => todo.id !== id);
-
+  const updatedTodos = getStoredTodos().filter((todo) => todo.id !== id);
   saveTodos(updatedTodos);
   return true;
 };

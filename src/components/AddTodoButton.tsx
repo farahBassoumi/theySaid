@@ -4,7 +4,7 @@ interface AddTodoButtonProps {
   addTodo: () => void;
 }
 
-export default function AddTodoButton({addTodo}: AddTodoButtonProps) {
+export default function AddTodoButton({ addTodo }: AddTodoButtonProps) {
   const { t } = useTranslation();
 
   return (
@@ -56,7 +56,7 @@ export default function AddTodoButton({addTodo}: AddTodoButtonProps) {
         transition: { type: 'spring', damping: 60 },
       }}
       onClick={addTodo}
-      className="flex items-center justify-center w-full  px-4 py-2 rounded-[50px] max-h-[40px] text-mainBg-light hover:text-white text-sm hover:bg-main-dark hover:text-main bg-main focus:outline-none"
+      className="flex w-full max-h-[40px] items-center justify-center rounded-[50px] px-4 py-2 text-sm text-mainBg-light hover:bg-main-dark hover:text-white bg-main focus:outline-none"
       style={{
         boxShadow:
           'inset 0 2px 4px rgba(0, 0, 0, 0.2), inset 0 -2px 6px rgba(45, 53, 0, 0.05)',

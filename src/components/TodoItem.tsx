@@ -1,17 +1,18 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSetAtom } from 'jotai';
 import { motion } from 'framer-motion';
+
 import { Status, Tag, Todo } from '@models';
 import { deleteTodo, updateTodo } from '@/services';
 import { doneTodoAtom, todosAtom } from '@/store/atoms/todosAtom';
-import { useSetAtom } from 'jotai';
-import { useTranslation } from 'react-i18next';
 
 import { DeleteLottie, TagLottie } from './ui-elements/Lotties';
 
 const TodoItem = ({ todo }: { todo: Todo }) => {
   const setTodos = useSetAtom(todosAtom);
-  const { t } = useTranslation();
   const setDoneTodoAtom = useSetAtom(doneTodoAtom);
+  const { t } = useTranslation();
 
   const statusCycle = [Status.Pending, Status.InProgress, Status.Done];
   const tagCycle = [Tag.Life, Tag.Personal, Tag.Work];
@@ -36,6 +37,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
   const handleChange = async (field: keyof Todo, value: string) => {
     const currentTodo = { ...todo };
     const updatedTodo = { ...todo, [field]: value };
+
     setTodos((prevTodos) =>
       prevTodos.map((t) => (t.id === todo.id ? updatedTodo : t))
     );
@@ -44,8 +46,9 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
       await updateTodo(updatedTodo);
       if (field === 'status' && value === Status.Done) {
         setDoneTodoAtom(true);
-        console.log('Todo marked as done:', updatedTodo);
-      } else setDoneTodoAtom(false);
+      } else {
+        setDoneTodoAtom(false);
+      }
     } catch (error) {
       console.error('Failed to update todo:', error);
       setTodos((prevTodos) =>
@@ -55,9 +58,9 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
   };
 
   return (
-    <div className="flex md:flex-row flex-col  md:gap-4 items-center justify-between px-4 lg:py-1 py-2 transition-all focus:outline-none">
+    <div className="flex flex-col items-center justify-between gap-4 px-4 py-2 transition-all focus:outline-none md:flex-row lg:py-1">
       <span
-        className={`text-md flex items-center w-full font-medium transition-all overflow-auto ${
+        className={`flex w-full items-center overflow-auto text-md font-medium transition-all ${
           todo.status === Status.Done
             ? 'line-through text-main-light'
             : 'text-gray-800'
@@ -66,7 +69,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
         {todo.title}
       </span>
 
-      <div className="flex flex-row md:gap-3">
+      <div className="flex flex-row gap-3 md:gap-3">
         <motion.button
           type="button"
           whileTap={{ scale: 1.1 }}
@@ -77,7 +80,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
               statusCycle[(currentIndex + 1) % statusCycle.length];
             handleChange('status', nextStatus);
           }}
-          className="px-2 text-[12px] md:text-sm flex items-center justify-center w-[80px] md:w-[100px] focus:outline-none"
+          className="flex w-[80px] items-center justify-center px-2 text-[12px] focus:outline-none md:w-[100px] md:text-sm"
         >
           <motion.span
             whileTap={{ scale: 1.3 }}
@@ -95,7 +98,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
             transition: { type: 'spring', stiffness: 900, bounce: 2 },
           }}
           onClick={() => onBlobClick(todo.tag)}
-          className="flex justify-center items-center md:w-12 w-8 md:h-12 h-8 focus:outline-none"
+          className="flex h-8 w-8 items-center justify-center focus:outline-none md:h-12 md:w-12"
         >
           <TagLottie tag={todo.tag} />
         </motion.button>
@@ -113,7 +116,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
           onClick={onDelete}
           className="focus:outline-none"
         >
-          <div className="md:w-10 md:h-10 w-8 h-8">
+          <div className="h-8 w-8 md:h-10 md:w-10">
             <DeleteLottie />
           </div>
         </motion.button>

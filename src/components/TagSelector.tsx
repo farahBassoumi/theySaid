@@ -38,7 +38,7 @@ export default function TagSelector({ currentTag, onChange }: TagSelectorProps) 
         transition={{ type: 'spring', stiffness: 600 }}
         onClick={handleClick}
         className={`
-          w-full px-4 py-2 rounded-[50px] border border-gray-300 
+          w-full px-4 py-2 rounded-[50px] border border-main-darl 
           focus:outline-none text-sm shadow-inner 
           ${tagColorMap[currentTag]}
         `}
