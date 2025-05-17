@@ -1,0 +1,18 @@
+{
+  "do_it_!": "Do it !",
+  "inputs": {
+    "add_a_new_todo": "Add a new todo",
+    "add": "Add",
+    "delete_all": "Delete All"
+  },
+  "status": {
+    "pending": "Pending",
+    "in_progress": "In progress",
+    "done": "Done"
+  },
+  "tag": {
+    "life": "Life",
+    "personal": "Personal",
+    "work": "Work"
+  }
+}

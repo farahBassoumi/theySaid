@@ -1,0 +1,18 @@
+{
+  "do_it_!": "Fais-le !",
+  "inputs": {
+    "add_a_new_todo": "Ajouter une tâche",
+    "add": "Ajouter",
+    "delete_all": "Supprimer tout"
+  },
+  "status": {
+    "pending": "En attente",
+    "in_progress": "En cours",
+    "done": "Terminé"
+  },
+  "tag": {
+    "life": "Vie",
+    "personal": "Personnel",
+    "work": "Travail"
+  }
+}
