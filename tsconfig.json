@@ -14,7 +14,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@icons": ["./src/icons"],
+      "@lotties": ["./src/assets/lotties"],
+      "@atoms": ["./src/store/atoms"],
       "@components": ["./src/components"],
       "@pages": ["./src/pages"],
       "@types": ["./src/types"],
@@ -25,7 +26,8 @@
     },
     "jsx": "react-jsx",
     "allowJs": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "types": ["vite/client", "vitest"]
