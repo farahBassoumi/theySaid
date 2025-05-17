@@ -88,7 +88,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
             textShadow: '4px 4px 8px rgba(0, 41, 77, 0.6)',
             transition: { bounce: 2, stiffness: 300, type: 'spring' },
           }}
-          className="flex w-[80px] h-[20px] md:h-[30px] rounded-full bg-main-light text-main-dark pt-[2px]  hover:text-main items-center justify-center px-2 text-[12px] focus:outline-none md:w-[100px] md:text-sm"
+          className="flex w-[90px] h-[20px] md:h-[30px] rounded-full bg-main-light text-main-dark pt-[2px]  hover:text-main items-center justify-center px-2 text-[12px] focus:outline-none md:w-[100px] md:text-sm"
         >
           <motion.span
             whileTap={{ scale: 1.3 }}
