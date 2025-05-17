@@ -6,11 +6,13 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "deploy": "gh-pages -d dist/theySaid"
   },
   "nx": {
     "includedScripts": []
   },
+  "homepage": "https://farahBassoumi.github.io/theySaid",
   "dependencies": {
     "@apollo/client": "^3.13.8",
     "@lottiefiles/dotlottie-react": "^0.13.5",
@@ -26,7 +28,8 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-i18next": "^15.5.1",
-    "react-router-dom": "6.29.0"
+    "react-router-dom": "6.29.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

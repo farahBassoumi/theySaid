@@ -14,7 +14,7 @@ export default function AppName() {
         whileHover={{
           scale: 1.8,
           textShadow: '4px 4px 8px rgba(0, 41, 77, 0.6)',
-          transition: { bounce: 4, stiffness: 500, type: 'spring' },
+          transition: { bounce: 4, stiffness: 500, type: 'spring', delay: 0.3 },
         }}
       >
         {t('do_it_!')}

@@ -1,3 +1,4 @@
+import { TodosSchema } from '@/models/todoSchema';
 import { CreateTodoParams, Status, Tag, Todo } from '@models';
 
 const STORAGE_KEY = 'todos';
@@ -5,7 +6,17 @@ const STORAGE_KEY = 'todos';
 const getStoredTodos = (): Todo[] => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    if (!stored) return [];
+
+    const parsed = JSON.parse(stored);
+    const result = TodosSchema.safeParse(parsed);
+
+    if (!result.success) {
+      console.error('Invalid todo data in localStorage:', result.error);
+      return [];
+    }
+
+    return result.data;
   } catch (error) {
     console.error('Failed to parse stored todos:', error);
     return [];
@@ -26,7 +37,7 @@ export const createTodo = async (params: CreateTodoParams): Promise<Todo> => {
   const todos = getStoredTodos();
 
   const newTodo: Todo = {
-    id: crypto.randomUUID?.() ?? Date.now().toString(), // more robust ID
+    id: crypto.randomUUID?.() ?? Date.now().toString(),
     createdAt: new Date(),
     ...params,
   };

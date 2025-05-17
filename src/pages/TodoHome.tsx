@@ -91,6 +91,7 @@ export function TodoHome() {
           stiffness: 500,
           damping: 20,
           bounce: 0.4,
+          delay:0.4
         }}
         className="w-screen flex flex-col lg:flex-row justify-center gap-[20px]
                    bg-white bg-opacity-40 backdrop-blur-lg
@@ -107,12 +108,13 @@ export function TodoHome() {
             stiffness: 800,
             damping: 20,
             bounce: 2,
-            delay: 0.2,
+            delay: 0.7,
           }}
           className="flex justify-center w-full"
         >
           <input
             type="text"
+            autoFocus
             placeholder={t('inputs.add_a_new_todo')}
             value={newTodo.title}
             onChange={(e) => handleChange('title', e.target.value)}

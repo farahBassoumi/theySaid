@@ -6,13 +6,12 @@ import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-//TODO: understand what this does
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig(() => ({
-  //root: __dirname,
-
+  base: '/theySaid/',
+  root: __dirname,
   cacheDir: './node_modules/.vite/theySaid',
   resolve: {
     alias: {
@@ -25,7 +24,6 @@ export default defineConfig(() => ({
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@models': path.resolve(__dirname, 'src/models'),
-      
     },
   },
   server: {

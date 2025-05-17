@@ -69,7 +69,10 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
         {todo.title}
       </span>
 
-      <div className="flex flex-row gap-3 md:gap-3">
+      <div
+        style={{ textShadow: '2px 2px 4px rgba(0, 41, 77, 0.6)' }}
+        className="flex flex-row items-center gap-3 md:gap-3"
+      >
         <motion.button
           type="button"
           whileTap={{ scale: 1.1 }}
@@ -80,7 +83,12 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
               statusCycle[(currentIndex + 1) % statusCycle.length];
             handleChange('status', nextStatus);
           }}
-          className="flex w-[80px] items-center justify-center px-2 text-[12px] focus:outline-none md:w-[100px] md:text-sm"
+          whileHover={{
+            scale: 1.1,
+            textShadow: '4px 4px 8px rgba(0, 41, 77, 0.6)',
+            transition: { bounce: 2, stiffness: 300, type: 'spring' },
+          }}
+          className="flex w-[80px] h-[20px] md:h-[30px] rounded-full bg-main-light text-main-dark pt-[2px]  hover:text-main items-center justify-center px-2 text-[12px] focus:outline-none md:w-[100px] md:text-sm"
         >
           <motion.span
             whileTap={{ scale: 1.3 }}

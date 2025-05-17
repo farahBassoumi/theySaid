@@ -15,7 +15,7 @@ i18n
       escapeValue: false,
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
+      loadPath: '/theySaid/locales/{{lng}}/translation.json',
     },
     detection: {
       order: ['localStorage', 'navigator'],
@@ -24,3 +24,5 @@ i18n
   });
 
 export default i18n;
+
+

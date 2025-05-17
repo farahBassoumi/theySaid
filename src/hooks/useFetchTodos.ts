@@ -12,7 +12,7 @@ export const useFetchTodos = () => {
     debounce(async () => {
       setLoading(true);
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
 
       try {
         const todos = await fetchTodos();
